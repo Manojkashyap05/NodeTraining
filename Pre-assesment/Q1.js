@@ -29,15 +29,39 @@ const customers = [
   },
 ];
 
-const unique = new Set();
+// const unique = new Set();
 
-const findDuplicate = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (unique.has(arr[i].Name)) {
-      return arr[i];
+// const findDuplicate = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (unique.has(arr[i].Name)) {
+//       return arr[i];
+//     }
+//     unique.add(arr[i].Name);
+//   }
+// };
+
+// console.log("Duplicate found", findDuplicate(customers));
+
+
+
+// 1st method
+function findFirstDuplicateAccount(){
+
+  let uniqueCustomers=[]
+  let duplicate ={}
+  for(let customer of customers){
+    let existingCustomerIndex = uniqueCustomers.findIndex(item=>item.Name===customer.Name)
+    if(existingCustomerIndex>-1){
+      duplicate = uniqueCustomers[existingCustomerIndex]
+      break
     }
-    unique.add(arr[i].Name);
+    else uniqueCustomers.push(customer)
   }
-};
+  console.log(duplicate?.AccountNo||"No duplicates Found")
+}
+findFirstDuplicateAccount()
 
-console.log("Duplicate found", findDuplicate(customers));
+
+//2nd method
+
+//let customerCounts={}

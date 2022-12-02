@@ -98,3 +98,11 @@ console.log(
   "The account number from which maximum amount sent is",
   getAccountNoWithMaxAmountSent(transactions, "From")
 );
+
+
+// function findHighestDebitAccount(){
+//   let highestdebit = 0
+//   let highestDebitAccount=
+
+
+

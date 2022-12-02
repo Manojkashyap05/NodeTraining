@@ -88,40 +88,60 @@ const transactions = [
   },
 ];
 
-const calcFromAmount = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (fromAmounts.hasOwnProperty(arr[i].From)) {
-      fromAmounts[arr[i].From] += arr[i].Amount;
-    } else {
-      fromAmounts[arr[i].From] = arr[i].Amount;
-    }
-  }
-};
-const calcToAmount = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (toAmounts.hasOwnProperty(arr[i].To)) {
-      toAmounts[arr[i].To] += arr[i].Amount;
-    } else {
-      toAmounts[arr[i].To] = arr[i].Amount;
-    }
-  }
-};
+// const calcFromAmount = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (fromAmounts.hasOwnProperty(arr[i].From)) {
+//       fromAmounts[arr[i].From] += arr[i].Amount;
+//     } else {
+//       fromAmounts[arr[i].From] = arr[i].Amount;
+//     }
+//   }
+// };
+// const calcToAmount = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (toAmounts.hasOwnProperty(arr[i].To)) {
+//       toAmounts[arr[i].To] += arr[i].Amount;
+//     } else {
+//       toAmounts[arr[i].To] = arr[i].Amount;
+//     }
+//   }
+// };
 
-const getFinalAmount = (fromAmounts, toAmounts) => {
-  calcFromAmount(transactions);
-  calcToAmount(transactions);
-  console.log(fromAmounts);
-  console.log(toAmounts);
-  const usersWithFinalBalance = {};
-  // finalbalance  = earnings - expenses
-  // earning are in toAmounts Obj,
-  // expenses are in fromAmount obj
-  Object.keys(fromAmounts).forEach((key) => {
-    if (toAmounts.hasOwnProperty(key)) {
-      usersWithFinalBalance[key] = toAmounts[key] - fromAmounts[key];
-    }
-  });
-  return usersWithFinalBalance;
-};
+// const getFinalAmount = (fromAmounts, toAmounts) => {
+//   calcFromAmount(transactions);
+//   calcToAmount(transactions);
+//   console.log(fromAmounts);
+//   console.log(toAmounts);
+//   const usersWithFinalBalance = {};
+//   // finalbalance  = earnings - expenses
+//   // earning are in toAmounts Obj,
+//   // expenses are in fromAmount obj
+//   Object.keys(fromAmounts).forEach((key) => {
+//     if (toAmounts.hasOwnProperty(key)) {
+//       usersWithFinalBalance[key] = toAmounts[key] - fromAmounts[key];
+//     }
+//   });
+//   return usersWithFinalBalance;
+// };
 
-console.log(getFinalAmount(fromAmounts, toAmounts));
+// console.log(getFinalAmount(fromAmounts, toAmounts));
+
+
+
+
+function calculateCustomerbalanceAmount(){
+  let customerBalances = []
+  for (const customer of customers){
+    let balance =0
+    for (const transaction of transactions){
+      if(transaction.From === customer.AccountNo){
+        balance-=transaction.Amount
+      }else if(transaction.To ===customer.AccountNo){
+        balance+=transaction.Amount
+      }
+    }
+    customerBalances.push({account:customer.AccountNo ,name:customer.Name,balance:transactions.balance})
+  }
+  console.log(customerBalances)
+}
+calculateCustomerbalanceAmount()
