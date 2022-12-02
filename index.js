@@ -11,6 +11,8 @@ async function main() {
 
   app.use(express.json());
   app.use("/api/products", require("./CRUD/products.routes"));
-  app.listen(3000, () => console.log("Server Started"));
+  app.listen(process.env.PORT, () =>
+    console.log("Server Started at", process.env.PORT)
+  );
 }
 main();
